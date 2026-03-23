@@ -1,0 +1,948 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Timothy Shibu | Computer Engineering</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #1a1a24;
+    --accent: #c8b8ff;
+    --accent2: #7ee8c8;
+    --text: #e8e6f0;
+    --muted: #7a7890;
+    --border: rgba(200,184,255,0.12);
+    --glow: rgba(200,184,255,0.08);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 4rem;
+    background: rgba(10,10,15,0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.3rem;
+    color: var(--accent);
+    text-decoration: none;
+    letter-spacing: 0.02em;
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 400;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* ── HERO ── */
+  #home {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 50% at 70% 40%, rgba(126,232,200,0.06) 0%, transparent 70%),
+      radial-gradient(ellipse 50% 60% at 20% 60%, rgba(200,184,255,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-eyebrow {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    line-height: 1.05;
+    color: var(--text);
+    opacity: 0;
+    animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-name span { color: var(--accent); font-style: italic; }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-top: 1.5rem;
+    max-width: 540px;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.6s forwards;
+    line-height: 1.8;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 2.8rem;
+    opacity: 0;
+    animation: fadeUp 0.8s 0.8s forwards;
+  }
+  .btn {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: 2px;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+  .btn-primary {
+    background: var(--accent);
+    color: var(--bg);
+    border: 1px solid var(--accent);
+  }
+  .btn-primary:hover { background: transparent; color: var(--accent); }
+  .btn-outline {
+    background: transparent;
+    color: var(--accent2);
+    border: 1px solid var(--accent2);
+  }
+  .btn-outline:hover { background: var(--accent2); color: var(--bg); }
+
+  .hero-quote {
+    margin-top: 4rem;
+    padding-left: 1.5rem;
+    border-left: 2px solid var(--accent);
+    font-family: 'DM Serif Display', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--muted);
+    max-width: 480px;
+    opacity: 0;
+    animation: fadeUp 0.8s 1s forwards;
+  }
+  .hero-quote cite {
+    display: block;
+    font-family: 'DM Mono', monospace;
+    font-style: normal;
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    color: var(--accent2);
+    margin-top: 0.6rem;
+  }
+
+  /* ── SECTIONS ── */
+  section {
+    padding: 7rem 4rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+  .section-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--accent2);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    color: var(--text);
+    margin-bottom: 3rem;
+    line-height: 1.15;
+  }
+  .section-title span { color: var(--accent); font-style: italic; }
+
+  hr.divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  /* ── ABOUT ── */
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-text p { color: var(--muted); margin-bottom: 1.2rem; font-size: 1rem; }
+  .about-text p strong { color: var(--text); font-weight: 500; }
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+  .about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  .stat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .stat-card:hover { border-color: var(--accent); background: var(--surface2); }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2.2rem;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 0.3rem;
+  }
+
+  /* ── RESUME ── */
+  .resume-section { margin-bottom: 2.5rem; }
+  .resume-category {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .resume-item {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding: 1.2rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .resume-item:hover { border-color: var(--accent); }
+  .resume-item-title { font-weight: 500; color: var(--text); font-size: 0.95rem; }
+  .resume-item-sub { color: var(--muted); font-size: 0.85rem; margin-top: 0.2rem; }
+  .resume-item-date {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--muted);
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    align-self: start;
+    margin-top: 0.15rem;
+  }
+  .resume-item ul {
+    margin-top: 0.6rem;
+    padding-left: 1.1rem;
+    grid-column: 1 / -1;
+  }
+  .resume-item li { color: var(--muted); font-size: 0.88rem; margin-bottom: 0.3rem; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .skill-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.2rem;
+  }
+  .skill-group-title {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+  .skill-group p { color: var(--muted); font-size: 0.85rem; }
+
+  .resume-download {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    padding: 0.9rem 2rem;
+    border: 1px solid var(--accent);
+    border-radius: 2px;
+    color: var(--accent);
+    text-decoration: none;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.2s;
+  }
+  .resume-download:hover { background: var(--accent); color: var(--bg); }
+
+  /* ── CAREER GOALS ── */
+  .goals-intro { color: var(--muted); max-width: 680px; margin-bottom: 3rem; font-size: 1rem; }
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 1px;
+    background: linear-gradient(to bottom, var(--accent), var(--accent2), transparent);
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.2s;
+  }
+  .timeline-item:hover { border-color: var(--accent); }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.4rem;
+    top: 1.8rem;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 2px solid var(--bg);
+  }
+  .timeline-year {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+  .timeline-heading { font-weight: 500; color: var(--text); margin-bottom: 0.5rem; font-size: 1rem; }
+  .timeline-body { color: var(--muted); font-size: 0.9rem; }
+
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1.2rem;
+    margin-top: 3rem;
+  }
+  .step-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 1.5rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .step-card:hover { border-color: var(--accent2); background: var(--surface2); }
+  .step-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: var(--accent);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 0.6rem;
+  }
+  .step-title { font-weight: 500; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+  .step-body { color: var(--muted); font-size: 0.85rem; }
+
+  /* ── PROJECTS ── */
+  .project-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    transition: border-color 0.2s;
+  }
+  .project-card:hover { border-color: var(--accent); }
+  .project-tag {
+    display: inline-block;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    border: 1px solid var(--accent2);
+    border-radius: 2px;
+    padding: 0.2rem 0.6rem;
+    margin-bottom: 1rem;
+  }
+  .project-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.6rem;
+    color: var(--text);
+    margin-bottom: 0.8rem;
+  }
+  .project-body { color: var(--muted); font-size: 0.95rem; margin-bottom: 1rem; }
+  .project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1.2rem;
+  }
+  .project-pill {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.3rem 0.8rem;
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 2px;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+  .project-placeholder {
+    width: 100%;
+    height: 220px;
+    background: linear-gradient(135deg, var(--surface2) 0%, rgba(200,184,255,0.04) 100%);
+    border: 1px dashed var(--border);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1.5rem 0;
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  /* ── CONTACT ── */
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .contact-text { color: var(--muted); font-size: 1rem; line-height: 1.8; }
+  .contact-links { display: flex; flex-direction: column; gap: 1rem; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1.2rem 1.5rem;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    text-decoration: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .contact-link:hover { border-color: var(--accent); background: var(--surface2); }
+  .contact-link-icon {
+    font-family: 'DM Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent2);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    min-width: 50px;
+  }
+  .contact-link-value { color: var(--text); font-size: 0.9rem; }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 3rem 2rem;
+    border-top: 1px solid var(--border);
+    font-family: 'DM Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    section { padding: 5rem 1.5rem; }
+    #home { padding: 0 1.5rem; }
+    .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .hero-name { font-size: 2.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">TS</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#resume">Resume</a></li>
+    <li><a href="#goals">Goals</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 1 — HERO / WELCOME
+═══════════════════════════════════════════════ -->
+<section id="home" style="max-width:100%; padding-top: 0;">
+  <div class="hero-bg"></div>
+  <div class="hero-eyebrow">Computer Engineering · Georgia Tech · Class of 2028</div>
+  <h1 class="hero-name">Timothy<br><span>Shibu.</span></h1>
+  <p class="hero-sub">
+    Hardware-focused engineer with a passion for digital logic, signal processing, and the elegant intersection of music and technology. Currently exploring FPGA development, chip design, and real-time systems at Georgia Tech.
+  </p>
+  <div class="hero-cta">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+    <a href="#resume" class="btn btn-outline">Resume</a>
+  </div>
+  <blockquote class="hero-quote">
+    "The engineer's first problem in any design situation is to discover what the problem really is."
+    <cite>— Unknown Engineering Proverb</cite>
+  </blockquote>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 2 — ABOUT / BIO
+═══════════════════════════════════════════════ -->
+<section id="about">
+  <div class="section-label">01 · About</div>
+  <h2 class="section-title">Engineer. Musician.<br><span>Builder.</span></h2>
+
+  <div class="about-grid">
+    <div class="about-text">
+      <p>
+        <strong>I'm Timothy Shibu</strong>, a Computer Engineering student at the Georgia Institute of Technology, originally from Lilburn, Georgia. Growing up in a close-knit community shaped my belief that technology is most powerful when it connects and uplifts people.
+      </p>
+      <p>
+        My academic focus lies at the intersection of hardware and software — specifically in digital logic, FPGA development, and computer architecture. I am a member of <strong>Silicon Jackets</strong>, Georgia Tech's student-run integrated circuit design club, where I have contributed to real tapeout-bound projects including schematic-to-layout verification for a 64-bit adder block.
+      </p>
+      <p>
+        Outside of engineering, music is central to who I am. I have served as a Music Director leading ensembles of 15+ musicians and work as a private instructor teaching drums and bass. This background in music has sharpened skills that translate directly to engineering: disciplined practice, systems thinking, and the ability to both lead and listen.
+      </p>
+      <p>
+        This ePortfolio is a professional showcase of my technical projects, academic growth, and career trajectory. It is designed for recruiters, faculty, and collaborators interested in hardware engineering and digital systems.
+      </p>
+      <div class="about-tags">
+        <span class="tag">FPGA</span>
+        <span class="tag">Digital Logic</span>
+        <span class="tag">Python</span>
+        <span class="tag">C / Java</span>
+        <span class="tag">Signal Processing</span>
+        <span class="tag">SystemVerilog</span>
+        <span class="tag">Drums & Bass</span>
+        <span class="tag">Georgia Tech</span>
+      </div>
+    </div>
+
+    <div class="about-stats">
+      <div class="stat-card">
+        <div class="stat-num">3.33</div>
+        <div class="stat-label">GPA · Computer Engineering</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">4+</div>
+        <div class="stat-label">Years teaching music professionally</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">15+</div>
+        <div class="stat-label">Musicians mentored as Music Director</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-num">64-bit</div>
+        <div class="stat-label">Adder block verified for tapeout · Silicon Jackets</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 3 — RESUME
+═══════════════════════════════════════════════ -->
+<section id="resume">
+  <div class="section-label">02 · Resume</div>
+  <h2 class="section-title">Experience &<br><span>Credentials.</span></h2>
+
+  <!-- SKILLS -->
+  <div class="resume-section">
+    <div class="resume-category">Skills</div>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <div class="skill-group-title">Programming</div>
+        <p>Java, Python, C, C#, JavaScript</p>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Software & Tools</div>
+        <p>Android Studio, GitHub, MATLAB, Unity</p>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Hardware</div>
+        <p>SystemVerilog, FPGA Development, Schematic-to-Layout Verification</p>
+      </div>
+      <div class="skill-group">
+        <div class="skill-group-title">Languages</div>
+        <p>English (Fluent), Malayalam (Conversational)</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="resume-section">
+    <div class="resume-category">Education</div>
+    <div class="resume-item">
+      <div>
+        <div class="resume-item-title">Georgia Institute of Technology</div>
+        <div class="resume-item-sub">B.S. Computer Engineering · GPA 3.33 · Atlanta, GA</div>
+      </div>
+      <div class="resume-item-date">Jul 2024 – May 2028</div>
+      <ul>
+        <li>Relevant Coursework: Data Structures & Algorithms, Objects & Design, Computer Organization & Programming</li>
+        <li>Member, Silicon Jackets (IC Design Club)</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- EXPERIENCE -->
+  <div class="resume-section">
+    <div class="resume-category">Experience</div>
+    <div class="resume-item">
+      <div>
+        <div class="resume-item-title">Private Music Instructor</div>
+        <div class="resume-item-sub">Self-Employed · Lilburn, GA · Drums & Bass</div>
+      </div>
+      <div class="resume-item-date">Jun 2022 – Present</div>
+      <ul>
+        <li>Maintained 90% student retention over 6+ months through adaptive, feedback-driven teaching methods and structured progress tracking.</li>
+      </ul>
+    </div>
+    <div class="resume-item">
+      <div>
+        <div class="resume-item-title">Music Director</div>
+        <div class="resume-item-sub">Church Worship Team · Sugar Hill, GA · Drums, Bass, Keys, Vocals, Guitar</div>
+      </div>
+      <div class="resume-item-date">May 2020 – Present</div>
+      <ul>
+        <li>Mentored 15+ musicians in vocal and instrumental technique, stage performance, and ensemble dynamics.</li>
+        <li>Increased skilled volunteer participation by 40% through structured mentorship and rehearsal planning.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="resume-section">
+    <div class="resume-category">Projects</div>
+    <div class="resume-item">
+      <div>
+        <div class="resume-item-title">3D Game — Games Studies (LMC 2410)</div>
+        <div class="resume-item-sub">Game Developer · Unity / C#</div>
+      </div>
+      <div class="resume-item-date">Spring 2024</div>
+      <ul>
+        <li>Designed and developed a 3D game featuring an AI-driven adversary in Unity.</li>
+        <li>Improved game performance by 15% by refactoring C# scripts and eliminating redundant physics calculations.</li>
+      </ul>
+    </div>
+    <div class="resume-item">
+      <div>
+        <div class="resume-item-title">Web Development — Objects & Design (CS 2340)</div>
+        <div class="resume-item-sub">Full-Stack Developer · HTML / CSS</div>
+      </div>
+      <div class="resume-item-date">Fall 2024</div>
+      <ul>
+        <li>Developed and deployed two functional websites using HTML through both self-directed learning and faculty guidance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- LEADERSHIP -->
+  <div class="resume-section">
+    <div class="resume-category">Leadership & Activities</div>
+    <div class="resume-item">
+      <div>
+        <div class="resume-item-title">Silicon Jackets — Member</div>
+        <div class="resume-item-sub">Georgia Tech IC Design Club</div>
+      </div>
+      <div class="resume-item-date">Aug 2025 – Present</div>
+      <ul>
+        <li>Performed schematic-to-layout verification for a 64-bit adder block, ensuring functional integrity prior to team tapeout submission.</li>
+      </ul>
+    </div>
+  </div>
+
+  <a href="#" class="resume-download">
+    ↓ &nbsp; Download Full Resume (PDF)
+  </a>
+  <p style="font-size:0.8rem;color:var(--muted);margin-top:0.8rem;font-family:'DM Mono',monospace;">
+    Replace the link above with your actual PDF resume URL after uploading it to your site.
+  </p>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 4 — CAREER GOALS
+═══════════════════════════════════════════════ -->
+<section id="goals">
+  <div class="section-label">03 · Career Goals</div>
+  <h2 class="section-title">Where I'm<br><span>Headed.</span></h2>
+
+  <p class="goals-intro">
+    My long-term ambition is to become a hardware engineer specializing in chip architecture and VLSI design — contributing to the development of next-generation processors, FPGAs, or custom silicon at a company at the frontier of semiconductor innovation. Getting there requires a deliberate, step-by-step plan built on strong fundamentals, hands-on experience, and continuous learning.
+  </p>
+
+  <!-- TIMELINE -->
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-year">2024 – 2025 · Year 1 at Georgia Tech</div>
+      <div class="timeline-heading">Build Foundations & Get Involved</div>
+      <div class="timeline-body">
+        Complete core ECE coursework (data structures, computer organization, OOP). Join Silicon Jackets and contribute to active IC design projects. Begin the Discovery Project — Real-Time Audio Spectrum Analyzer — to develop hands-on signal processing skills. Maintain GPA above 3.3.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2025 – 2026 · Year 2</div>
+      <div class="timeline-heading">Deepen Hardware Knowledge & Secure Internship</div>
+      <div class="timeline-body">
+        Enroll in advanced ECE electives in digital design, VLSI, and embedded systems. Pursue a Summer 2026 Hardware Engineering Internship to gain industry exposure. Explore undergraduate research opportunities in GT's ECE department, ideally focused on computer architecture or digital systems.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2026 – 2027 · Year 3</div>
+      <div class="timeline-heading">Specialize & Lead</div>
+      <div class="timeline-body">
+        Take on a leadership role within Silicon Jackets or a related technical organization. Complete a second internship or co-op at a semiconductor or EDA company (e.g., Intel, AMD, Cadence, Synopsys, or Apple Silicon). Begin evaluating graduate school options if research interests deepen.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2027 – 2028 · Year 4</div>
+      <div class="timeline-heading">Capstone, Career Launch</div>
+      <div class="timeline-body">
+        Complete senior capstone with a hardware-focused project. Secure a full-time hardware engineering role or acceptance into a top M.S./Ph.D. program in Electrical & Computer Engineering. Graduate May 2028.
+      </div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-year">2028 – 2033 · Post-Graduation</div>
+      <div class="timeline-heading">Industry Impact in Chip Design</div>
+      <div class="timeline-body">
+        Work as a hardware or chip design engineer contributing to processor architecture, FPGA platforms, or custom silicon. Long-term goal: lead engineering teams building the next generation of computing hardware, with potential to transition into technical leadership or research.
+      </div>
+    </div>
+  </div>
+
+  <!-- STEPS -->
+  <div class="steps-grid">
+    <div class="step-card">
+      <div class="step-num">01</div>
+      <div class="step-title">Master Core ECE Threads</div>
+      <div class="step-body">Complete the Systems & Architecture and/or Digital Design threads at Georgia Tech, taking courses in VLSI, embedded systems, and advanced digital logic.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">02</div>
+      <div class="step-title">Gain Industry Experience</div>
+      <div class="step-body">Secure hardware-focused internships each summer, targeting companies like Intel, Qualcomm, Apple, AMD, or NVIDIA to understand real-world chip design workflows.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">03</div>
+      <div class="step-title">Contribute to IC Design Projects</div>
+      <div class="step-body">Deepen involvement in Silicon Jackets, taking on increasingly complex roles in layout, verification, and eventually chip architecture within tapeout projects.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">04</div>
+      <div class="step-title">Pursue Undergraduate Research</div>
+      <div class="step-body">Apply to GT's ORS program or a faculty-led lab focused on computer architecture or digital systems to build a research foundation for potential graduate study.</div>
+    </div>
+    <div class="step-card">
+      <div class="step-num">05</div>
+      <div class="step-title">Build a Technical Portfolio</div>
+      <div class="step-body">Continuously expand this ePortfolio with hardware projects, published designs, and documented learning — creating a record that speaks clearly to future employers and graduate programs.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- ══════════════════════════════════════════════
+     SECTION 5 — PROJECTS
+═══════════════════════════════════════════════ -->
+<section id="projects">
+  <div class="section-label">04 · Projects</div>
+  <h2 class="section-title">Technical<br><span>Work.</span></h2>
+
+  <!-- DISCOVERY PROJECT -->
+  <div class="project-card">
+    <span class="project-tag">Discovery Project · ECE 1100</span>
+    <div class="project-title">Real-Time Audio Spectrum Analyzer</div>
+    <div class="project-placeholder">[ Screenshot / Demo Video — Add after project completion ]</div>
+    <div class="project-body">
+      <p style="margin-bottom:1rem;">
+        This project involves building a Python application that captures live microphone input and displays a real-time frequency spectrum visualization — a live bar graph showing frequency amplitudes as sound is captured. The project directly explores the relationship between analog signals (sound waves) and digital signal processing, connecting to core ECE concepts in signals and systems.
+      </p>
+      <p style="margin-bottom:1rem;">
+        The central technical concept is the <strong style="color:var(--text);">Fast Fourier Transform (FFT)</strong> — an algorithm that converts a time-domain audio signal into its frequency components, allowing us to see exactly which frequencies are present in a sound at any given moment. A 440 Hz musical note, for example, should produce a clear spike at that frequency on the output plot.
+      </p>
+      <p style="margin-bottom:1rem;">
+        <strong style="color:var(--text);">Tools & Libraries:</strong> Python 3.8+, NumPy, SciPy, Matplotlib, SoundDevice / PyAudio. No specialized lab equipment is required — the project runs entirely on a personal laptop.
+      </p>
+      <p style="margin-bottom:1rem;">
+        <strong style="color:var(--text);">ECE Skills Developed:</strong> This project develops three core hands-on ECE competencies: (1) digital signal processing fundamentals — understanding how analog sound is sampled, quantized, and converted to digital data; (2) frequency domain analysis using FFT, a foundational tool in communications, audio engineering, and sensor systems; and (3) real-time data processing — managing streaming data with an awareness of the tradeoffs between buffer size, latency, and frequency resolution.
+      </p>
+      <p>
+        <strong style="color:var(--text);">Timeline:</strong> The project spans six weeks (Feb–Apr 2026), progressing from FFT theory and library setup, through audio capture implementation and FFT testing, to real-time visualization and final documentation. Success is defined as a working live-updating plot that responds visibly to voice, music, and ambient sound.
+      </p>
+    </div>
+    <div class="project-meta">
+      <span class="project-pill">Python</span>
+      <span class="project-pill">FFT</span>
+      <span class="project-pill">NumPy</span>
+      <span class="project-pill">SciPy</span>
+      <span class="project-pill">Matplotlib</span>
+      <span class="project-pill">Signal Processing</span>
+      <span class="project-pill">Real-Time Systems</span>
+    </div>
+  </div>
+
+  <!-- GAME PROJECT -->
+  <div class="project-card">
+    <span class="project-tag">LMC 2410 · Spring 2024</span>
+    <div class="project-title">3D AI-Driven Game</div>
+    <div class="project-body">
+      <p>
+        Designed and developed a 3D game in Unity where players must evade an AI-controlled adversary. As the sole developer, I was responsible for game architecture, AI behavior scripting in C#, level design, and performance optimization. After profiling the build, I identified and refactored redundant physics calculations, improving overall game performance by 15%. This project introduced me to real-time system constraints and the importance of efficient code in interactive applications.
+      </p>
+    </div>
+    <div class="project-meta">
+      <span class="project-pill">Unity</span>
+      <span class="project-pill">C#</span>
+      <span class="project-pill">AI / Game Logic</span>
+      <span class="project-pill">Performance Optimization</span>
+    </div>
+  </div>
+
+  <!-- WEB DEV -->
+  <div class="project-card">
+    <span class="project-tag">CS 2340 · Fall 2024</span>
+    <div class="project-title">Web Development Projects</div>
+    <div class="project-body">
+      <p>
+        Developed and deployed two functional websites as part of the Objects & Design course. Through a combination of self-directed learning and faculty guidance, I built these projects using HTML and CSS, gaining familiarity with front-end structure and deployment workflows. This experience reinforced object-oriented thinking applied to UI design and gave me a foundation in web-based project delivery.
+      </p>
+    </div>
+    <div class="project-meta">
+      <span class="project-pill">HTML</span>
+      <span class="project-pill">CSS</span>
+      <span class="project-pill">Web Deployment</span>
+    </div>
+  </div>
+
+  <!-- SILICON JACKETS -->
+  <div class="project-card">
+    <span class="project-tag">Silicon Jackets · Aug 2025 – Present</span>
+    <div class="project-title">64-Bit Adder Block — IC Tapeout Verification</div>
+    <div class="project-body">
+      <p>
+        As a member of Silicon Jackets, Georgia Tech's student IC design club, I contributed to a major project milestone by performing schematic-to-layout verification for a 64-bit adder block ahead of the team's tapeout submission. This work required careful attention to functional integrity, ensuring the physical layout matched the intended schematic behavior at each stage. The experience provided direct exposure to the VLSI design flow and the rigorous verification process required before a chip is sent to fabrication.
+      </p>
+    </div>
+    <div class="project-meta">
+      <span class="project-pill">VLSI</span>
+      <span class="project-pill">Schematic Verification</span>
+      <span class="project-pill">Layout</span>
+      <span class="project-pill">IC Design</span>
+      <span class="project-pill">Tapeout</span>
+    </div>
+  </div>
+</section>
+
+<hr class="divider"/>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-label">05 · Contact</div>
+  <h2 class="section-title">Get In<br><span>Touch.</span></h2>
+
+  <div class="contact-grid">
+    <div class="contact-text">
+      <p>
+        I am currently seeking a <strong style="color:var(--text);">Summer 2026 Hardware Engineering Internship</strong>. If you are a recruiter, collaborator, or fellow engineer interested in connecting, I would be glad to hear from you.
+      </p>
+      <p style="margin-top:1rem;">
+        You can also find me at Georgia Tech's ECE department events and Silicon Jackets meetings throughout the academic year.
+      </p>
+    </div>
+    <div class="contact-links">
+      <a href="mailto:tshibu3@gatech.edu" class="contact-link">
+        <span class="contact-link-icon">Email</span>
+        <span class="contact-link-value">tshibu3@gatech.edu</span>
+      </a>
+      <a href="https://linkedin.com/in/YOUR-LINKEDIN" class="contact-link" target="_blank">
+        <span class="contact-link-icon">LinkedIn</span>
+        <span class="contact-link-value">linkedin.com/in/timothy-shibu</span>
+      </a>
+      <a href="https://github.com/YOUR-GITHUB" class="contact-link" target="_blank">
+        <span class="contact-link-icon">GitHub</span>
+        <span class="contact-link-value">github.com/timothy-shibu</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  © 2026 Timothy Shibu · Computer Engineering · Georgia Institute of Technology
+</footer>
+
+</body>
+</html>
