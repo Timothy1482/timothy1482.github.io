@@ -444,22 +444,6 @@
     text-transform: uppercase;
     letter-spacing: 0.06em;
   }
-  .project-placeholder {
-    width: 100%;
-    height: 220px;
-    background: linear-gradient(135deg, var(--surface2) 0%, rgba(200,184,255,0.04) 100%);
-    border: 1px dashed var(--border);
-    border-radius: 4px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 1.5rem 0;
-    font-family: 'DM Mono', monospace;
-    font-size: 0.72rem;
-    color: var(--muted);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
 
   /* ── CONTACT ── */
   .contact-grid {
@@ -533,7 +517,7 @@
 
 <section id="home" style="max-width:100%; padding-top: 0;">
   <div class="hero-bg"></div>
-  <div class="hero-eyebrow">Computer Engineering · Georgia Tech </div>
+  <div class="hero-eyebrow">Computer Engineering · Georgia Tech</div>
   <h1 class="hero-name">Timothy<br><span>Shibu.</span></h1>
   <p class="hero-sub">
     Hardware-focused engineer with a passion for digital logic, signal processing, and the elegant intersection of music and technology. Currently exploring FPGA development, chip design, and real-time systems at Georgia Tech.
@@ -711,7 +695,7 @@
     <div class="timeline-item">
       <div class="timeline-year">2024 – 2025 · Year 1 at Georgia Tech</div>
       <div class="timeline-heading">Build Foundations & Get Involved</div>
-      <div class="timeline-body">Complete core ECE coursework (data structures, computer organization, OOP). Join Silicon Jackets and contribute to active IC design projects. Begin the Discovery Project — Real-Time Audio Spectrum Analyzer — to develop hands-on signal processing skills. Maintain GPA above 3.3.</div>
+      <div class="timeline-body">Complete core ECE coursework (data structures, computer organization, OOP). Join Silicon Jackets and contribute to active IC design projects. Begin the Discovery Project — Real-Time Audio Spectrum Analyzer — to develop hands-on signal processing skills. Maintain strong academic standing.</div>
     </div>
     <div class="timeline-item">
       <div class="timeline-year">2025 – 2026 · Year 2</div>
@@ -769,18 +753,98 @@
   <div class="section-label">04 · Projects</div>
   <h2 class="section-title">Technical<br><span>Work.</span></h2>
 
+  <!-- DISCOVERY PROJECT -->
   <div class="project-card">
-    <span class="project-tag">Discovery Project · ECE 1100</span>
+    <span class="project-tag">Discovery Project &middot; ECE 1100</span>
     <div class="project-title">Real-Time Audio Spectrum Analyzer</div>
-    <div class="project-placeholder">[ Screenshot / Demo Video — Add after project completion ]</div>
+    <img src="spectrum_screenshot.png" alt="Real-Time Audio Spectrum Analyzer" style="width:100%;border-radius:4px;margin:1.5rem 0;"/>
     <div class="project-body">
-      <p style="margin-bottom:1rem;">This project involves building a Python application that captures live microphone input and displays a real-time frequency spectrum visualization — a live bar graph showing frequency amplitudes as sound is captured. The project directly explores the relationship between analog signals (sound waves) and digital signal processing, connecting to core ECE concepts in signals and systems.</p>
-      <p style="margin-bottom:1rem;">The central technical concept is the <strong style="color:var(--text);">Fast Fourier Transform (FFT)</strong> — an algorithm that converts a time-domain audio signal into its frequency components, allowing us to see exactly which frequencies are present in a sound at any given moment. A 440 Hz musical note, for example, should produce a clear spike at that frequency on the output plot.</p>
-      <p style="margin-bottom:1rem;"><strong style="color:var(--text);">Tools & Libraries:</strong> Python 3.8+, NumPy, SciPy, Matplotlib, SoundDevice / PyAudio. No specialized lab equipment is required — the project runs entirely on a personal laptop.</p>
-      <p style="margin-bottom:1rem;"><strong style="color:var(--text);">ECE Skills Developed:</strong> This project develops three core hands-on ECE competencies: (1) digital signal processing fundamentals — understanding how analog sound is sampled, quantized, and converted to digital data; (2) frequency domain analysis using FFT, a foundational tool in communications, audio engineering, and sensor systems; and (3) real-time data processing — managing streaming data with an awareness of the tradeoffs between buffer size, latency, and frequency resolution.</p>
-      <p><strong style="color:var(--text);">Timeline:</strong> The project spans six weeks (Feb–Apr 2026), progressing from FFT theory and library setup, through audio capture implementation and FFT testing, to real-time visualization and final documentation. Success is defined as a working live-updating plot that responds visibly to voice, music, and ambient sound.</p>
+      <p style="margin-bottom:1rem;">A Python application that captures live microphone input and displays a real-time frequency spectrum visualization — a color-coded bar graph showing frequency amplitudes as sound is captured. The project explores the relationship between analog signals and digital signal processing, connecting to core ECE concepts in signals and systems.</p>
+
+      <div style="border-top:1px solid var(--border);margin:1.8rem 0;"></div>
+      <p style="margin-bottom:0.5rem;"><strong style="color:var(--text);font-size:1rem;">Project Idea &amp; Motivation</strong></p>
+      <p style="margin-bottom:1rem;">As both a musician and an engineer, I have always been fascinated by the science of sound. I chose this project because it sits at the intersection of two things I care about — music and electrical engineering. The idea was to build a tool that makes the invisible visible: sound is all around us, but we rarely get to see its frequency structure in real time. By building a spectrum analyzer from scratch, I could apply ECE concepts like sampling theory and Fourier analysis to something I interact with every day.</p>
+
+      <div style="border-top:1px solid var(--border);margin:1.8rem 0;"></div>
+      <p style="margin-bottom:0.8rem;"><strong style="color:var(--text);font-size:1rem;">Project Progress — Week by Week</strong></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Week 1 - Feb 21-28</div>
+          <div style="color:var(--muted);font-size:0.88rem;">Researched FFT theory and how continuous audio signals are sampled and quantized. Installed NumPy, SciPy, Matplotlib, and SoundDevice. Verified microphone input was accessible via Python with a simple recording test.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Week 2 - Feb 28-Mar 7</div>
+          <div style="color:var(--muted);font-size:0.88rem;">Implemented basic audio capture using SoundDevice's InputStream. Learned about sample rate (44,100 Hz), chunk size, and bit depth. Saved and played back a 3-second recording to verify the pipeline was working correctly.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Week 3 - Mar 7-14</div>
+          <div style="color:var(--muted);font-size:0.88rem;">Applied FFT processing to live audio chunks using NumPy. Tested with a 440 Hz tone from my phone and confirmed the output showed a clear spike at approximately 440 Hz. Debugged frequency scaling and amplitude normalization.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Week 4 - Mar 14-21</div>
+          <div style="color:var(--muted);font-size:0.88rem;">Built real-time visualization using Matplotlib's FuncAnimation. Created a live-updating bar chart refreshing every 40ms. Added color-coding by frequency range: teal for bass (0-300Hz), purple for mids, pink for highs.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Week 5 - Mar 21-28</div>
+          <div style="color:var(--muted);font-size:0.88rem;">Polished the visualization — added axis labels, a peak frequency detector, and styled the UI. Tested on voice, music, and clapping to confirm consistent behavior across different sound sources.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.4rem;">Week 6 - Mar 28-Apr 4</div>
+          <div style="color:var(--muted);font-size:0.88rem;">Cleaned up and documented the code with comments. Captured screenshots and recorded a demo. Wrote up the project description, challenges faced, and ECE skills gained for the ePortfolio showcase.</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);margin:1.8rem 0;"></div>
+      <p style="margin-bottom:0.8rem;"><strong style="color:var(--text);font-size:1rem;">Successes &amp; Challenges</strong></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.2rem;">
+        <div style="background:var(--surface2);border:1px solid rgba(126,232,200,0.2);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent2);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Successes</div>
+          <ul style="color:var(--muted);font-size:0.88rem;padding-left:1rem;">
+            <li style="margin-bottom:0.4rem;">Successfully captured and processed live microphone input in real time</li>
+            <li style="margin-bottom:0.4rem;">FFT correctly identified a 440 Hz tone played from my phone</li>
+            <li style="margin-bottom:0.4rem;">Live visualization updates smoothly at ~25 frames per second</li>
+            <li>Peak frequency detector accurately tracks dominant sounds</li>
+          </ul>
+        </div>
+        <div style="background:var(--surface2);border:1px solid rgba(200,184,255,0.15);border-radius:4px;padding:1rem;">
+          <div style="font-family:'DM Mono',monospace;font-size:0.68rem;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.6rem;">Challenges</div>
+          <ul style="color:var(--muted);font-size:0.88rem;padding-left:1rem;">
+            <li style="margin-bottom:0.4rem;">Amplitude scaling was off initially — bars were clipping; fixed by tuning the normalization factor</li>
+            <li style="margin-bottom:0.4rem;">Matplotlib animation lagged at first; resolved by adjusting chunk size and animation parameters</li>
+            <li>Library installation on macOS required using pip3 instead of pip</li>
+          </ul>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);margin:1.8rem 0;"></div>
+      <p style="margin-bottom:0.8rem;"><strong style="color:var(--text);font-size:1rem;">ECE Skills Gained</strong></p>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1.2rem;">
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);margin-bottom:0.4rem;">ADC</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;">Digital Signal Processing</div>
+          <div style="color:var(--muted);font-size:0.82rem;">Understanding how analog sound waves are sampled at 44,100 Hz, quantized, and converted to digital data.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);margin-bottom:0.4rem;">FFT</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;">Frequency Domain Analysis</div>
+          <div style="color:var(--muted);font-size:0.82rem;">Applying the Fast Fourier Transform to convert time-domain audio into frequency components — a core tool in communications and audio engineering.</div>
+        </div>
+        <div style="background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:1rem;text-align:center;">
+          <div style="font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--accent);margin-bottom:0.4rem;">RT</div>
+          <div style="font-family:'DM Mono',monospace;font-size:0.65rem;color:var(--accent2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.5rem;">Real-Time Processing</div>
+          <div style="color:var(--muted);font-size:0.82rem;">Managing streaming data and understanding tradeoffs between buffer size, latency, and frequency resolution in live systems.</div>
+        </div>
+      </div>
+
+      <div style="border-top:1px solid var(--border);margin:1.8rem 0;"></div>
+      <p style="margin-bottom:0.5rem;"><strong style="color:var(--text);font-size:1rem;">Final Thoughts</strong></p>
+      <p style="color:var(--muted);font-size:0.95rem;margin-bottom:1.2rem;">This project exceeded my expectations. Going in, I understood music intuitively as a musician — but I had never thought about it mathematically. Implementing the FFT and watching it correctly identify a 440 Hz tone in real time was genuinely exciting. It made abstract concepts from signals and systems feel tangible and real. This project has deepened my interest in the Signals &amp; Systems thread and made me curious about future applications in audio engineering and hardware accelerators for DSP workloads. I plan to continue expanding this — potentially adding a spectrogram view and eventually porting the processing to an FPGA.</p>
+
+      <div style="border-top:1px solid var(--border);margin:1.8rem 0;"></div>
+      <p style="margin-bottom:0.4rem;"><strong style="color:var(--text);font-size:0.9rem;">Tools &amp; Libraries</strong></p>
+      <p style="color:var(--muted);font-size:0.88rem;">Python 3.9 &middot; NumPy &middot; SciPy &middot; Matplotlib &middot; SoundDevice &middot; macOS built-in microphone</p>
     </div>
-    <div class="project-meta">
+    <div class="project-meta" style="margin-top:1.5rem;">
       <span class="project-pill">Python</span>
       <span class="project-pill">FFT</span>
       <span class="project-pill">NumPy</span>
@@ -788,9 +852,12 @@
       <span class="project-pill">Matplotlib</span>
       <span class="project-pill">Signal Processing</span>
       <span class="project-pill">Real-Time Systems</span>
+      <span class="project-pill">SoundDevice</span>
+      <span class="project-pill">ADC Theory</span>
     </div>
   </div>
 
+  <!-- GAME PROJECT -->
   <div class="project-card">
     <span class="project-tag">LMC 2410 · Spring 2024</span>
     <div class="project-title">3D AI-Driven Game</div>
@@ -805,6 +872,7 @@
     </div>
   </div>
 
+  <!-- WEB DEV -->
   <div class="project-card">
     <span class="project-tag">CS 2340 · Fall 2024</span>
     <div class="project-title">Web Development Projects</div>
@@ -818,6 +886,7 @@
     </div>
   </div>
 
+  <!-- SILICON JACKETS -->
   <div class="project-card">
     <span class="project-tag">Silicon Jackets · Aug 2025 – Present</span>
     <div class="project-title">64-Bit Adder Block — IC Tapeout Verification</div>
